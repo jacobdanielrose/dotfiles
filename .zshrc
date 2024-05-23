@@ -22,14 +22,6 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Create a .local/bin directory for local binary installs
-LOCAL_BIN_DIR="${HOME}/.local/bin"
-if [ ! -d "$LOCAL_BIN_DIR" ]; then
-   mkdir -p "$(dirname $LOCAL_BIN_DIR)"
-fi
-path+=("$LOCAL_BIN_DIR:$PATH")
-export PATH
-
 # Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
@@ -46,6 +38,8 @@ zinit snippet OMZP::aws
 zinit snippet OMZP::kubectl
 zinit snippet OMZP::kubectx
 zinit snippet OMZP::command-not-found
+#zinit snippet OMZP::docker
+
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -80,6 +74,8 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 # Aliases
 alias ls='ls --color'

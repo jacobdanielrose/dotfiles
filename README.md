@@ -34,8 +34,16 @@ sudo apt-get install stow
 
 ### fzf
 
+Unfortunately the default version that ships in the Ubuntu/Debian repos doesn't contain the `--zsh` flag, so in this case you can install the binary directly.
+
 ```
-sudo apt-get install fzf
+wget -c https://github.com/junegunn/fzf/releases/download/0.52.1/fzf-0.52.1-linux_amd64.tar.gz -O - | tar -xz ; sudo mv fzf /usr/local/bin/
+```
+
+### Neovim
+
+```
+sudo apt-get install neovim
 ```
 
 ## Installation
