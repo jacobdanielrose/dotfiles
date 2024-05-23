@@ -46,6 +46,17 @@ wget -c https://github.com/junegunn/fzf/releases/download/0.52.1/fzf-0.52.1-linu
 sudo apt-get install neovim
 ```
 
+### Zoxide
+
+You can try the default version for your distro
+
+```
+sudo apt-get install zoxide
+```
+
+Unfortunately the default version on Ubuntu (WSL) causes issues, so if the `cd` command no longer works after running this then install the newest release [here](https://github.com/ajeetdsouza/zoxide/releases/tag/v0.9.4).
+
+
 ## Installation
 
 First, check out the dotfiles repo in your $HOME directory using git
