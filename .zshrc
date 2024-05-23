@@ -22,6 +22,14 @@ fi
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
+# Create a .local/bin directory for local binary installs
+LOCAL_BIN_DIR="${HOME}/.local/bin"
+if [ ! -d "$LOCAL_BIN_DIR" ]; then
+   mkdir -p "$(dirname $LOCAL_BIN_DIR)"
+fi
+path+=("$LOCAL_BIN_DIR:$PATH")
+export PATH
+
 # Add in Powerlevel10k
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
