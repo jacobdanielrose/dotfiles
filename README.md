@@ -71,3 +71,12 @@ then use GNU stow to create symlinks
 ```
 stow .
 ```
+
+## WSL
+
+If you encounter the following on WSL
+```
+compinit:503: no such file or directory: /usr/share/zsh/vendor-completions/_docker
+```
+
+Then try the solution shown [here](https://github.com/docker/for-win/issues/8336#issuecomment-718369597) 
