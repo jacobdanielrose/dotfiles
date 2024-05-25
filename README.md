@@ -1,63 +1,16 @@
 # Dotfiles
 
-This directory contains the dotfiles for my system
+This directory contains the dotfiles for my setup. This repo allows me to deploy that config to any system relatively easily. 
 
 ## Requirements
 
-### zsh
-First make sure that you have `zsh` installed on your system. If it's not the default then run:
+This setup requires a few programs to be installed. Among them are [tmux plugin manager](https://github.com/tmux-plugins/tpm), [zoxide](https://github.com/ajeetdsouza/zoxide), [neovim](https://neovim.io/), and [fzf](https://github.com/junegunn/fzf). You will also need a [Nerd Font](https://www.nerdfonts.com/). Choose whatever you like, however I chose the 0xProto font. 
 
-```
-sudo apt-get install zsh
-```
-Then change the default shell to `zsh`
-
-```
-chsh <your user>
-```
-Then enter the path of the `zsh` binary. If you don't know where it is then run `which zsh`.
-
-
-Then ensure you have the following installed on your system
-
-### Git
-
-```
-sudo apt-get install git
-```
-
-### Stow
-
-```
-sudo apt-get install stow
-```
-
-### fzf
-
-Unfortunately the default version that ships in the Ubuntu/Debian repos doesn't contain the `--zsh` flag, so in this case you can install the binary directly.
-
-```
-wget -c https://github.com/junegunn/fzf/releases/download/0.52.1/fzf-0.52.1-linux_amd64.tar.gz -O - | tar -xz ; sudo mv fzf /usr/local/bin/
-```
-
-### Neovim
-
-```
-sudo apt-get install neovim
-```
-
-### Zoxide
-
-You can try the default version for your distro
-
-```
-sudo apt-get install zoxide
-```
-
-Unfortunately the default version on Ubuntu (WSL) causes issues, so if the `cd` command no longer works after running this then install the newest release [here](https://github.com/ajeetdsouza/zoxide/releases/tag/v0.9.4).
-
+This process has been condensed into a setup script that is (moderately) distro agnostic.
 
 ## Installation
+
+### Automatic
 
 First, check out the dotfiles repo in your $HOME directory using git
 
@@ -66,17 +19,34 @@ git clone git@github.com:jacobdanielrose/dotfiles.git
 cd dotfiles
 ```
 
-then use GNU stow to create symlinks
+Then run the setup script 
 
+```
+chmod +x scripts/setup.sh
+scripts/setup.sh
+```
+
+### Manual
+Assuming the script ran without issues, you can then use GNU stow to create symlinks
+
+```
+git clone git@github.com:jacobdanielrose/dotfiles.git
+cd dotfiles
+```
+Then you can manually enable stow
 ```
 stow .
 ```
 
-## WSL
+At this point you will have to restart the terminal or log back in. Zinit should then configure your zsh environment. To use the nvim config, open up nvim (it should be aliased to just vim) and you will see that nvchad then installs automatically and applies the config from this repo. 
 
-If you encounter the following on WSL
+## Issues
+
+If you encounter the following on WSL when opening a new terminal
 ```
 compinit:503: no such file or directory: /usr/share/zsh/vendor-completions/_docker
 ```
 
-Then try the solution shown [here](https://github.com/docker/for-win/issues/8336#issuecomment-718369597) 
+then try the solution shown [here](https://github.com/docker/for-win/issues/8336#issuecomment-718369597). It is automatically implemented in the script if you are running it on a WSL-based distro.
+
+I have only tested the install script on Ubuntu, Debian, and Arch. Older versions or other distros may or may not work, your mileage may vary. Feel free to fork this repo and improve the setup script, I created it with my very limited bash skills and a helpful dose of ChatGPT. 
